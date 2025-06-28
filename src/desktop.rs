@@ -66,6 +66,21 @@ impl<R: Runtime> Keyring<R> {
         Ok(keyring::Entry::new(service, user)?.set_secret(secret)?)
     }
 
+    pub fn set_secret_with_expiration(
+        &self,
+        service: &str,
+        user: &str,
+        secret: &[u8],
+        expiration: u64,
+    ) -> keyring::Result<()> {
+        let entry = keyring::Entry::new(service, user)?;
+        let mut attrs = std::collections::HashMap::new();
+        let expiration_str = expiration.to_string();
+        attrs.insert("expiration", expiration_str.as_str());
+        entry.update_attributes(&attrs)?;
+        Ok(entry.set_secret(secret)?)
+    }
+
     pub fn delete_secret(&self, service: &str, user: &str) -> keyring::Result<()> {
         Ok(keyring::Entry::new(service, user)?.delete_credential()?)
     }

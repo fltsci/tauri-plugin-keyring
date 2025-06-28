@@ -19,7 +19,9 @@ pub(crate) async fn get_or_set_password<R: Runtime>(
     user: String,
     password: String,
 ) -> Result<String, String> {
-    app.keyring().get_or_set_password(&service, &user, &password).map_err(|e| e.to_string())
+    app.keyring()
+        .get_or_set_password(&service, &user, &password)
+        .map_err(|e| e.to_string())
 }
 
 #[command]
@@ -63,7 +65,9 @@ pub(crate) async fn get_or_set_secret<R: Runtime>(
     user: String,
     secret: Vec<u8>,
 ) -> Result<Vec<u8>, String> {
-    app.keyring().get_or_set_secret(&service, &user, &secret).map_err(|e| e.to_string())
+    app.keyring()
+        .get_or_set_secret(&service, &user, &secret)
+        .map_err(|e| e.to_string())
 }
 
 #[command]

@@ -46,6 +46,8 @@ pub fn init<R: Runtime>() -> TauriPlugin<R> {
             commands::get_or_set_secret,
         ])
         .setup(|app, api| {
+            #[cfg(test)]
+            keyring::set_default_credential_builder(keyring::mock::default_credential_builder());
             // #[cfg(mobile)]
             // let keyring = mobile::init(app, api)?;
             #[cfg(desktop)]
