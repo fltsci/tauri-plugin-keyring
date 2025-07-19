@@ -13,7 +13,7 @@ links = "tauri-plugin-keyring"
 tauri = { version = "2.5.1" }
 serde = { version = "1.0.219", features = ["derive"] }
 thiserror = "2.0.12"
-keyring = { version = "4.0.0-rc.1", features = [
+keyring = { git = "https://github.com/open-source-cooperative/keyring-rs.git", rev = "9d1b02ff4c9fd1ff125c71f252c14b9ed7313fcb", features = [
     "apple-native",
     "windows-native",
     "secret-service",
